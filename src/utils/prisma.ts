@@ -279,21 +279,17 @@ export const fetchDataList = async (
   let error: string | null = null;
 
   try {
-    // @ts-expect-error
     data = await prisma[uncapitalize(resource)].findMany(prismaListRequest);
-    // @ts-expect-error
     total = await prisma[uncapitalize(resource)].count({
       where: prismaListRequest.where,
     });
   } catch (e: any) {
     const { skip, take, orderBy } = prismaListRequest;
-    // @ts-expect-error
     data = await prisma[uncapitalize(resource)].findMany({
       skip,
       take,
       orderBy,
     });
-    // @ts-expect-error
     total = await prisma[uncapitalize(resource)].count();
     error = e.message ? e.message : e;
     console.error(e);
