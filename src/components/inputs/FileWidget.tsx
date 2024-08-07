@@ -34,6 +34,7 @@ const FileWidget = (props: WidgetProps) => {
           return res.blob();
         })
         .then((blob) => {
+          // @ts-expect-error
           setFile(new File([blob], blob.name, { type: blob.type }));
         });
     }

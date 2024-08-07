@@ -9,6 +9,7 @@ const ArrayField = (props: FieldProps) => {
       onChange={onChange}
       formData={formData}
       name={name}
+      // @ts-expect-error
       disabled={disabled}
       required={required}
       schema={schema}
