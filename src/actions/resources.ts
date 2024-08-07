@@ -12,6 +12,7 @@ export const deleteResourceItems = async <M extends ModelName>(
   ids: string[] | number[]
 ) => {
   const modelIdProperty = getModelIdProperty(model);
+  // @ts-expect-error
   await prisma[uncapitalize(model)].deleteMany({
     where: {
       [modelIdProperty]: { in: ids },

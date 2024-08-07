@@ -215,7 +215,7 @@ export async function getPropsFromParams({
 
         Object.entries(select).forEach(([key, value]) => {
           const fieldTypeDmmf = dmmfSchema?.fields.find(
-            (field: { name: string; }) => field.name === key
+            (field) => field.name === key
           )?.type;
 
           if (fieldTypeDmmf && dmmfSchema) {
@@ -223,6 +223,7 @@ export async function getPropsFromParams({
               options.model?.[fieldTypeDmmf as ModelName]?.list;
 
             if (
+              // @ts-expect-error
               edit?.fields?.[key as Field<ModelName>]?.display === "table"
             ) {
               if (!relatedResourceOptions?.display) {
@@ -242,6 +243,7 @@ export async function getPropsFromParams({
           }
         });
 
+        // @ts-expect-error
         let data = await prisma[resource].findUniqueOrThrow({
           select,
           where: { [idProperty]: resourceId },
@@ -250,11 +252,12 @@ export async function getPropsFromParams({
         Object.entries(data).forEach(([key, value]) => {
           if (Array.isArray(value)) {
             const fieldTypeDmmf = dmmfSchema?.fields.find(
-              (field: any) => field.name === key
+              (field) => field.name === key
             )?.type;
 
             if (fieldTypeDmmf && dmmfSchema) {
               if (
+                // @ts-expect-error
                 edit?.fields?.[key as Field<ModelName>]?.display === "table"
               ) {
                 data[key] = mapDataList({

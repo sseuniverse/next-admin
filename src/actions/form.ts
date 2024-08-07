@@ -60,7 +60,8 @@ export const submitForm = async (
             error: "Unable to delete items of this model",
           };
         }
-        
+
+        // @ts-expect-error
         await prisma[resource].delete({
           where: {
             [resourceIdField]: resourceId,
@@ -112,6 +113,7 @@ export const submitForm = async (
         };
       }
 
+      // @ts-expect-error
       data = await prisma[resource].update({
         where: {
           [resourceIdField]: resourceId,
@@ -132,9 +134,12 @@ export const submitForm = async (
       };
     }
 
+    // @ts-expect-error
     data = await prisma[resource].create({
       data: formattedData,
     });
+
+    // @ts-expect-error
     await prisma[resource].update({
       where: {
         [resourceIdField]: data[resourceIdField],
@@ -158,6 +163,7 @@ export const submitForm = async (
       // TODO This could be improved by merging form values but it's breaking stuff
       if (error.name === "ValidationError") {
         error.errors.map((error: any) => {
+          // @ts-expect-error
           data[error.property] = formData[error.property];
         });
       }
