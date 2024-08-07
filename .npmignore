@@ -5,3 +5,7 @@ jest.config.js
 tsconfig.json
 tailwind.config.js
 postcss.config.js
+eslint-config-custom
+prisma
+tsconfig
+.env
