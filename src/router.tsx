@@ -166,8 +166,7 @@ export const nextAdminRouter = async (
                 },
               };
             }
-
-            // @ts-expect-error
+            
             await prisma[resource].delete({
               where: {
                 [modelIdProperty]: resourceId,
@@ -233,8 +232,7 @@ export const nextAdminRouter = async (
                 },
               };
             }
-
-            // @ts-expect-error
+            
             await prisma[resource].update({
               where: {
                 [modelIdProperty]: resourceId,
@@ -280,12 +278,10 @@ export const nextAdminRouter = async (
             };
           }
 
-          // @ts-expect-error
           const createdData = await prisma[resource].create({
             data: formattedData,
           });
 
-          // @ts-expect-error
           await prisma[resource].update({
             where: {
               [modelIdProperty]: createdData[modelIdProperty],
@@ -318,7 +314,6 @@ export const nextAdminRouter = async (
             // TODO This could be improved by merging form values but it's breaking stuff
             if (error.name === "ValidationError") {
               error.errors.map((error: any) => {
-                // @ts-expect-error
                 data[error.property] = formData[error.property];
               });
             }
@@ -348,7 +343,6 @@ export const nextAdminRouter = async (
 
         const modelIdProperty = getModelIdProperty(resource);
 
-        // @ts-expect-error
         await prisma[uncapitalize(resource)].deleteMany({
           where: {
             [modelIdProperty]: {

@@ -305,7 +305,6 @@ export const transformData = <M extends ModelName>(
           if (
             !!editOptions?.fields?.[key as Field<M>] &&
             "display" in editOptions.fields[key as Field<M>]! &&
-            // @ts-expect-error
             editOptions.fields[key as keyof ObjectField<M>]!.display === "table"
           ) {
             return {
