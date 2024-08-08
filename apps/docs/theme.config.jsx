@@ -10,17 +10,17 @@ const config = {
     </div>
   ),
   project: {
-    link: "https://github.com/premieroctet/next-admin",
+    link: "https://github.com/sseuniverse/next-admin",
   },
-  docsRepositoryBase: "https://github.com/premieroctet/next-admin",
+  docsRepositoryBase: "https://github.com/sseuniverse/next-admin",
   footer: {
     text: (
       <span>
         MIT {new Date().getFullYear()} ©{" "}
         {
           // eslint-disable-next-line react/jsx-no-target-blank
-          <a href="https://premieroctet.com" target="_blank">
-            Premier Octet
+          <a href="https://sseworld.githib.io/v2" target="_blank">
+            SSE World
           </a>
         }
         .
@@ -37,8 +37,8 @@ const config = {
         name="keywords"
         content="next, prisma, admin, database, next.js, back-office, cms"
       />
-      <meta name="publisher" content="Premier Octet" />
-      <link rel="canonical" href="https://next-admin.vercel.app" />
+      <meta name="publisher" content="SSE World" />
+      {/* <link rel="canonical" href="https://next-admin.vercel.app" /> */}
       <link rel="icon" href="/logo.svg" />
     </>
   ),
