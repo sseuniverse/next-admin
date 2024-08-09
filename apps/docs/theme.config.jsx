@@ -6,7 +6,7 @@ const config = {
   logo: (
     <div className="flex items-center gap-2">
       <Logo width={45} />
-      <span className="font-semibold">Next Admin</span>
+      <span className="font-semibold">SSE Next Admin</span>
     </div>
   ),
   project: {
@@ -35,7 +35,7 @@ const config = {
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta
         name="keywords"
-        content="next, prisma, admin, database, next.js, back-office, cms"
+        content="next, prisma, admin, database, next.js, back-office, cms, sse"
       />
       <meta name="publisher" content="SSE World" />
       {/* <link rel="canonical" href="https://next-admin.vercel.app" /> */}
@@ -52,7 +52,7 @@ const config = {
     const { asPath } = useRouter();
     if (asPath !== "/") {
       return {
-        titleTemplate: "%s – Next Admin",
+        titleTemplate: "%s – SSE Next Admin",
       };
     }
   },
