@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { PropsWithChildren } from "react";
-// import "../../style.css";
+import "../globals.css";
 
 type Props = {
   params: {

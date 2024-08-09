@@ -3,7 +3,7 @@ import { getMainLayoutProps } from "@sse-ui/neadmin/dist/mainLayout";
 import { GetServerSideProps } from "next";
 import { options } from "../../../../options";
 import { prisma } from "../../../../prisma";
-import "../../../../styles.css";
+import "../../../../app/globals.css"
 
 type Props = MainLayoutProps & {
   totalUsers: number;

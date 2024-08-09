@@ -227,7 +227,7 @@ export const options: NextAdminOptions = {
   externalLinks: [
     {
       label: "Documentation",
-      url: "https://next-admin.js.org",
+      url: "https://sse-admin.vercel.app",
     },
     {
       label: "Page Router",

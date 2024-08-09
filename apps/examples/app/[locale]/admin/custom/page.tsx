@@ -36,7 +36,17 @@ const CustomPage = async () => {
         <div className="mt-2">
           <div>
             <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-              <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow dark:bg-gray-800 sm:p-6">
+              {stats.map((stat) => (
+                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow dark:bg-gray-800 sm:p-6" key={stat.name}>
+                  <dt className="truncate text-sm font-medium text-gray-500 dark:text-gray-400">
+                    {stat.name}
+                  </dt>
+                  <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-200">
+                    {stat.stat}
+                  </dd>
+                </div>
+              ))}
+              {/* <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow dark:bg-gray-800 sm:p-6">
                 <dt className="truncate text-sm font-medium text-gray-500 dark:text-gray-400">
                   Total Users
                 </dt>
@@ -59,7 +69,7 @@ const CustomPage = async () => {
                 <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-200">
                   1
                 </dd>
-              </div>
+              </div> */}
             </dl>
           </div>
         </div>
