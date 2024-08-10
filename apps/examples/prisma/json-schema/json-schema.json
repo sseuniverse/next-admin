@@ -202,6 +202,20 @@
         "postId",
         "categoryId"
       ]
+    },
+    "Roles": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ]
     }
   },
   "type": "object",
@@ -220,6 +234,9 @@
     },
     "categoriesOnPosts": {
       "$ref": "#/definitions/CategoriesOnPosts"
+    },
+    "roles": {
+      "$ref": "#/definitions/Roles"
     }
   }
 }

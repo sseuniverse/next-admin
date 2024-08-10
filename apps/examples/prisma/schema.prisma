@@ -72,3 +72,8 @@ model CategoriesOnPosts {
   categoryId String
   order      Int      @default(0)
 }
+
+model Roles {
+  id        String                 @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+}

@@ -1,6 +1,12 @@
 import { NextAdminOptions } from "@sse-ui/neadmin";
 import DatePicker from "./components/DatePicker";
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode } from "react";
+import {
+  ReactElement,
+  JSXElementConstructor,
+  ReactNode,
+  ReactPortal,
+  AwaitedReactNode,
+} from "react";
 
 export const options: NextAdminOptions = {
   basePath: "/admin",
@@ -37,14 +43,29 @@ export const options: NextAdminOptions = {
         ],
         fields: {
           role: {
-            formatter: (role: { toString: () => string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => {
+            formatter: (role: {
+              toString: () =>
+                | string
+                | number
+                | bigint
+                | boolean
+                | ReactElement<any, string | JSXElementConstructor<any>>
+                | Iterable<ReactNode>
+                | ReactPortal
+                | Promise<AwaitedReactNode>
+                | null
+                | undefined;
+            }) => {
               return (
                 <strong className="dark:text-white">{role.toString()}</strong>
               );
             },
           },
           birthDate: {
-            formatter: (date: unknown, context: { locale: Intl.LocalesArgument; }) => {
+            formatter: (
+              date: unknown | string,
+              context: { locale: Intl.LocalesArgument }
+            ) => {
               return new Date(date as unknown as string)
                 ?.toLocaleString(context?.locale)
                 .split(/[\s,]+/)[0];
@@ -152,7 +173,19 @@ export const options: NextAdminOptions = {
         search: ["title", "content"],
         fields: {
           author: {
-            formatter: (author: { name: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => {
+            formatter: (author: {
+              name:
+                | string
+                | number
+                | bigint
+                | boolean
+                | ReactElement<any, string | JSXElementConstructor<any>>
+                | Iterable<ReactNode>
+                | ReactPortal
+                | Promise<AwaitedReactNode>
+                | null
+                | undefined;
+            }) => {
               return <strong>{author.name}</strong>;
             },
           },
@@ -205,6 +238,19 @@ export const options: NextAdminOptions = {
         },
       },
     },
+    Role: {
+      title: "Roles",
+      icon: "InboxStackIcon",
+      toString: (role: { name: any; }) => `${role.name}`,
+      list: {
+        display: ["name"],
+        // search: ["name"]
+      },
+      edit: {
+        display: ["name",],
+        fields: {},
+      },
+    },
   },
   pages: {
     "/custom": {
@@ -221,6 +267,10 @@ export const options: NextAdminOptions = {
       {
         title: "Categories",
         models: ["Category"],
+      },
+      {
+        title: "Roles",
+        models: ["Roles"],
       },
     ],
   },
