@@ -2,7 +2,6 @@
 import * as OutlineIcons from "@heroicons/react/24/outline";
 import { ModelIcon } from "../../types";
 import { SVGProps } from "react";
-import React from "react";
 
 type Props = SVGProps<HTMLOrSVGElement> & {
   icon: ModelIcon;

@@ -3,7 +3,6 @@ import { HistoryEditor } from "slate-history";
 import { ReactEditor, RenderElementProps, RenderLeafProps } from "slate-react";
 import { TypeElement } from "typescript";
 import { RichTextFormat } from "../../../types";
-import React from "react";
 
 declare module "slate" {
   interface CustomTypes {

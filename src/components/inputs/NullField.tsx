@@ -1,7 +1,6 @@
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { FieldProps } from "@rjsf/utils";
 import { useI18n } from "../../context/I18nContext";
-import React from "react";
 
 const NullField = ({ schema }: FieldProps) => {
   const { t } = useI18n();

@@ -1,6 +1,5 @@
 import { FieldProps } from "@rjsf/utils";
 import MultiSelectWidget from "./MultiSelect/MultiSelectWidget";
-import React from "react";
 
 const ArrayField = (props: FieldProps) => {
   const { formData, onChange, name, disabled, schema, required } = props;
@@ -9,8 +8,7 @@ const ArrayField = (props: FieldProps) => {
       onChange={onChange}
       formData={formData}
       name={name}
-      // @ts-expect-error
-      disabled={disabled}
+      disabled={disabled ?? false}
       required={required}
       schema={schema}
     />

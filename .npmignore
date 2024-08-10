@@ -9,4 +9,4 @@ eslint-config-custom
 prisma
 tsconfig
 .env
-app
+apps

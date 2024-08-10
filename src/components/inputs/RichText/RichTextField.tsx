@@ -14,7 +14,6 @@ import {
   renderLeaf,
   serialize,
 } from "./utils";
-import React from "react";
 
 type RichTextFieldProps = {
   onChange: ChangeEventHandler<HTMLInputElement>;

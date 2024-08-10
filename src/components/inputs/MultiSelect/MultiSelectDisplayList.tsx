@@ -3,7 +3,6 @@ import { SortableContext } from "@dnd-kit/sortable";
 import { RJSFSchema } from "@rjsf/utils";
 import { Enumeration } from "../../../types";
 import MultiSelectDisplayListItem from "./MultiSelectDisplayListItem";
-import React from "react";
 
 type Props = {
   formData: any;

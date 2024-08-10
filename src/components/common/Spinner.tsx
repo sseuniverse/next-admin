@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import React from "react";
 import { HTMLProps } from "react";
 
 type Props = HTMLProps<SVGElement>;

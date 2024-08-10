@@ -1,6 +1,6 @@
 import { WidgetProps } from "@rjsf/utils";
+import { useFormState } from "../../context/FormStateContext";
 import { SwitchRoot, SwitchThumb } from "../radix/Switch";
-import React from "react";
 
 const CheckboxWidget = ({
   options,
@@ -9,6 +9,7 @@ const CheckboxWidget = ({
   disabled,
   ...props
 }: WidgetProps) => {
+  const { setFieldDirty } = useFormState();
   return (
     <div className="relative flex items-start py-1">
       <div className="flex h-5 items-center">
@@ -22,7 +23,10 @@ const CheckboxWidget = ({
         <SwitchRoot
           id={props.name}
           checked={value}
-          onCheckedChange={onChange}
+          onCheckedChange={(value) => {
+            setFieldDirty(props.name);
+            onChange(value);
+          }}
           disabled={disabled}
         >
           <SwitchThumb />

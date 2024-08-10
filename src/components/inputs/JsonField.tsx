@@ -3,7 +3,6 @@ import Editor from "@monaco-editor/react";
 import { useMemo } from "react";
 import { useColorScheme } from "../../context/ColorSchemeContext";
 import { CustomInputProps } from "../../types";
-import React from "react";
 
 type Props = CustomInputProps;
 

@@ -4,7 +4,6 @@ import {
 } from "@heroicons/react/24/outline";
 import clx from "clsx";
 import { useClipboard } from "../../hooks/useClipboard";
-import React from "react";
 
 type Props = {
   value: string;
