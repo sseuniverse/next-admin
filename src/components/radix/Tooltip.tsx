@@ -1,5 +1,5 @@
 import * as Tooltip from "@radix-ui/react-tooltip";
-import React, { forwardRef } from "react";
+import { forwardRef } from "react";
 import clsx from "clsx";
 
 export const TooltipProvider = Tooltip.Provider;

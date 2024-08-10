@@ -6,7 +6,6 @@ import { ModelIcon, ModelName } from "../types";
 import { slugify } from "../utils/tools";
 import ResourceIcon from "./common/ResourceIcon";
 import { buttonVariants } from "./radix/Button";
-import React from "react";
 
 const EmptyState = ({
   resource,

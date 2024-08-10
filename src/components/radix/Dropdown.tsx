@@ -1,6 +1,6 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import clsx from "clsx";
-import React, { ComponentProps, ElementRef, forwardRef } from "react";
+import { ComponentProps, ElementRef, forwardRef } from "react";
 
 export const Dropdown = DropdownMenu.Root;
 

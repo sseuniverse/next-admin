@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { useColorScheme } from "../context/ColorSchemeContext";
 import { useI18n } from "../context/I18nContext";
 

@@ -2,7 +2,6 @@ import clsx from "clsx";
 import { forwardRef } from "react";
 import Loader from "../assets/icons/Loader";
 import { useI18n } from "../context/I18nContext";
-import React from "react";
 
 const LoadingRow = forwardRef<
   HTMLDivElement,

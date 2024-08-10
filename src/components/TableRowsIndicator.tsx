@@ -1,4 +1,3 @@
-import React from "react";
 import { useI18n } from "../context/I18nContext";
 
 interface Props {

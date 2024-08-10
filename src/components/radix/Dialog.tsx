@@ -1,5 +1,5 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import React, { ElementRef, ForwardedRef, forwardRef } from "react";
+import { ElementRef, ForwardedRef, forwardRef } from "react";
 import clsx from "clsx";
 
 export const DialogRoot = Dialog.Root;

@@ -3,7 +3,6 @@ import {
   ArrowSmallUpIcon,
 } from "@heroicons/react/24/solid";
 import clsx from "clsx";
-import React from "react";
 import { useTransition } from "react";
 
 interface Props {

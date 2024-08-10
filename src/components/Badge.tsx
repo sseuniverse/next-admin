@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { useState } from "react";
 import Checkbox from "./radix/Checkbox";
-import React from "react";
 
 type BadgeProps = {
   name: string;

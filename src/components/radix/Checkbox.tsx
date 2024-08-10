@@ -1,7 +1,7 @@
 import { CheckIcon, MinusIcon } from "@heroicons/react/24/outline";
 import * as RadixCheckbox from "@radix-ui/react-checkbox";
 import clsx from "clsx";
-import React, { ComponentProps, useMemo } from "react";
+import { ComponentProps, useMemo } from "react";
 
 type Props = ComponentProps<typeof RadixCheckbox.Root> & {
   indeterminate?: boolean;

@@ -1,5 +1,4 @@
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import React from "react";
 
 const MAX_SHOWN_PAGES = 5;
 /**

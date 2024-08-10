@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useRouterInternal } from "../hooks/useRouterInternal";
 import { FilterWrapper, ModelName } from "../types";
 import Badge from "./Badge";
-import React from "react";
 
 type FiltersProps<T extends ModelName> = {
   filters?: FilterWrapper<T>[];

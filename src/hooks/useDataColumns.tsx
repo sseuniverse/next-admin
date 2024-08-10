@@ -12,7 +12,6 @@ import {
   ModelName,
 } from "../types";
 import { useRouterInternal } from "./useRouterInternal";
-import React from "react";
 
 type UseDataColumnsParams = {
   sortable?: boolean;

@@ -7,7 +7,9 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { useEffect } from "react";
 import { useConfig } from "../context/ConfigContext";
+import { useRouterInternal } from "../hooks/useRouterInternal";
 import { Field, ListData, ListDataItem, ModelIcon, ModelName } from "../types";
 import { slugify } from "../utils/tools";
 import EmptyState from "./EmptyState";
@@ -19,7 +21,6 @@ import {
   TableHeader,
   TableRow,
 } from "./radix/Table";
-import React from "react";
 
 interface DataTableProps {
   columns: ColumnDef<ListDataItem<ModelName>>[];
@@ -46,7 +47,7 @@ export function DataTable({
   deletable = false,
 }: DataTableProps) {
   const { basePath } = useConfig();
-
+  const { router } = useRouterInternal();
   const columnsVisibility = columns.reduce((acc, column) => {
     // @ts-expect-error
     const key = column.accessorKey as Field<typeof resource>;
@@ -72,6 +73,21 @@ export function DataTable({
     enableRowSelection: true,
     onRowSelectionChange: setRowSelection,
   });
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const pageNumber = Number(searchParams.get("page"));
+    if (!table.getRowModel().rows?.length && pageNumber && pageNumber > 1) {
+      const searchParamsObject = Object.fromEntries(searchParams.entries());
+      router.replace({
+        pathname: location.pathname,
+        query: {
+          ...searchParamsObject,
+          page: 1,
+        },
+      });
+    }
+  }, [router, table]);
 
   return (
     <div className="bg-nextadmin-background-default dark:bg-dark-nextadmin-background-emphasis border-nextadmin-border-default dark:border-dark-nextadmin-border-default overflow-hidden rounded-lg border">

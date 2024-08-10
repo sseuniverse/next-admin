@@ -15,7 +15,6 @@ import {
   DropdownItem,
   DropdownTrigger,
 } from "./radix/Dropdown";
-import React from "react";
 
 type Props = {
   exports: ListExport[];
