@@ -4,7 +4,7 @@
 
 ### Major Changes
 
-- [a005fdf](https://github.com/premieroctet/next-admin/commit/a005fdf):
+- [42a2d31](https://github.com/sseuniverse/next-admin/commit/42a2d31):
 
 ## Major Changes
 
@@ -27,7 +27,7 @@ Create a dynamic route `[[...nextadmin]]` to handle all the API routes.
 ```tsx
 // app/api/admin/[[...nextadmin]]/route.ts
 import { prisma } from "@/prisma";
-import { createHandler } from "@premieroctet/next-admin/dist/appHandler";
+import { createHandler } from "@sse-ui/neadmin/dist/appHandler";
 
 const { run } = createHandler({
   apiBasePath: "/api/admin",
@@ -46,7 +46,7 @@ export { run as DELETE, run as GET, run as POST };
 ```ts copy
   // pages/api/admin/[[...nextadmin]].ts
   import { prisma } from "@/prisma";
-  import { createApiRouter } from "@premieroctet/next-admin/dist/pageHandler";
+  import { createApiRouter } from "@sse-ui/neadmin/dist/pageHandler";
   import schema from "@/prisma/json-schema/json-schema.json";
 
   export const config = {
@@ -76,8 +76,8 @@ Replace the `getPropsFromParams` function with the `getNextAdminProps` function 
 
 ```tsx
 // app/admin/[[...nextadmin]]/page.tsx
-import { NextAdmin, PageProps } from "@premieroctet/next-admin";
-import { getNextAdminProps } from "@premieroctet/next-admin/dist/appRouter";
+import { NextAdmin, PageProps } from "@sse-ui/neadmin";
+import { getNextAdminProps } from "@sse-ui/neadmin/dist/appRouter";
 import { prisma } from "@/prisma";
 
 export default async function AdminPage({ params, searchParams }: PageProps) {
@@ -103,9 +103,9 @@ Do not use `nextAdminRouter` anymore. Replace it with the `getNextAdminProps` fu
 
 ```tsx copy
 // pages/admin/[[...nextadmin]].tsx
-import { AdminComponentProps, NextAdmin } from "@premieroctet/next-admin";
+import { AdminComponentProps, NextAdmin } from "@sse-ui/neadmin";
 
-import { getNextAdminProps } from "@premieroctet/next-admin/dist/pageRouter";
+import { getNextAdminProps } from "@sse-ui/neadmin/dist/pageRouter";
 import { GetServerSideProps } from "next";
 import { prisma } from " @/prisma";
 import schema from "@/prisma/json-schema/json-schema.json";
@@ -133,22 +133,22 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) =>
 
 ### Patch Changes
 
-- [f120d10](https://github.com/premieroctet/next-admin/commit/f120d10): Add `next-themes` to handle color scheme
-- [119a053](https://github.com/premieroctet/next-admin/commit/119a053): Redirect useEffect
-- [5b295bb](https://github.com/premieroctet/next-admin/commit/5b295bb): add dist
-- [12de962](https://github.com/premieroctet/next-admin/commit/12de962): Change logout system (Request or server action)
-- [170a48b](https://github.com/premieroctet/next-admin/commit/170a48b): Fix images CORS issues
-- [f3636ad](https://github.com/premieroctet/next-admin/commit/f3636ad): Small fixes (select, dark mode, dashboard, layout, doc)
-- [60afe2f](https://github.com/premieroctet/next-admin/commit/60afe2f): Add history on redirect `Save`
-- [0221476](https://github.com/premieroctet/next-admin/commit/0221476): Fix date input and add time-second format
-- [4e0e774](https://github.com/premieroctet/next-admin/commit/4e0e774): Add `isDirty` for form to submit only fields touched
-- [ed78f46](https://github.com/premieroctet/next-admin/commit/ed78f46): Dependency `next-themes`
-- [b5322db](https://github.com/premieroctet/next-admin/commit/b5322db): add URL redirect support for logout
-- [818f1e4](https://github.com/premieroctet/next-admin/commit/818f1e4): Merge main branch
+- [0fd4382](https://github.com/sseuniverse/next-admin/commit/0fd4382): Add `next-themes` to handle color scheme
+- [0fd4382](https://github.com/sseuniverse/next-admin/commit/0fd4382): Redirect useEffect
+- [3419d57](https://github.com/sseuniverse/next-admin/commit/3419d57): add dist
+- [42a2d31](https://github.com/sseuniverse/next-admin/commit/42a2d31): Change logout system (Request or server action)
+- [42a2d31](https://github.com/sseuniverse/next-admin/commit/170a48b): Fix images CORS issues
+- [42a2d31](https://github.com/sseuniverse/next-admin/commit/42a2d31): Small fixes (select, dark mode, dashboard, layout, doc)
+- [42a2d31](https://github.com/sseuniverse/next-admin/commit/42a2d31): Add history on redirect `Save`
+- [42a2d31](https://github.com/sseuniverse/next-admin/commit/42a2d31): Fix date input and add time-second format
+- [0fd4382](https://github.com/sseuniverse/next-admin/commit/0fd4382): Add `isDirty` for form to submit only fields touched
+- [0fd4382](https://github.com/sseuniverse/next-admin/commit/0fd4382): Dependency `next-themes`
+- [0fd4382](https://github.com/sseuniverse/next-admin/commit/0fd4382): add URL redirect support for logout
+- [0fd4382](https://github.com/sseuniverse/next-admin/commit/0fd4382): Merge main branch
 
 ## 1.0.2
 
-- [714bbce](https://github.com/sseuniverse/next-admin/commit/714bbce){:target="\_blank"}: Fixed All the issue and released stable version
+- [714bbce](https://github.com/sseuniverse/next-admin/commit/714bbce): Fixed All the issue and released stable version
 
 ## 1.0.0
 

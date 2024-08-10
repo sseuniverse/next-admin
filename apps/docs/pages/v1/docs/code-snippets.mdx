@@ -1,138 +1,25 @@
-import { Callout, Tabs } from "nextra/components";
+import { Callout } from "nextra/components";
 
 # Code snippets
 
-<Callout type="info">
-  This is the documentation for the latest version of Next Admin. If you are using an older version (`<2.0.0`), please refer to the [documentation](/v1/docs/code-snippets)
+<Callout type="default">
+  This documentation covers an older version of Next Admin. If you are using the
+  latest version (`>=2.0.0` and above), please refer to the [current
+  documentation](/docs).
 </Callout>
 
 This page contains code snippets that you can use in your projects. These are not a part of Next Admin, but may be useful for your projects.
 
-Some of the snippets are implemented in the example project. You can check them out in the [example project](https://sse-neadmin-demo.vercel.app) or in the [source code](https://github.com/sseuniverse/next-admin/tree/master/apps/examples).
-
-## Authentication
-
-<Tabs items={['App router', 'Pages router']}>
-    <Tabs.Tab>
-    The library does not provide an authentication system. If you want to add your own, you can do so by adding a role check in the page:
-
-    > The following example uses [next-auth](https://next-auth.js.org/) to handle authentication
-
-    ```ts copy filename="app/api/admin/[[...nextadmin]]/route.ts"
-    const { run } = createHandler({
-      options,
-      prisma,
-      apiBasePath: "/api/admin",
-      schema,
-      onRequest: (req) => {
-        const session = await getServerSession(authOptions);
-        const isAdmin = session?.user?.role === "SUPERADMIN";
-
-        if (!isAdmin) {
-          return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
-        }
-      }
-    });
-
-    export { run as POST, run as GET, run as DELETE };
-    ```
-
-    ```tsx copy filename="pages/admin/[[...nextadmin]].tsx"
-    export default async function AdminPage({
-      params,
-      searchParams,
-    }: {
-      params: { [key: string]: string[] };
-      searchParams: { [key: string]: string | string[] | undefined } | undefined;
-    }) {
-      const session = await getServerSession(authOptions);
-      const isAdmin = session?.user?.role === "SUPERADMIN"; // your role check
-
-      if (!isAdmin) {
-        redirect('/', { permanent: false })
-      }
-
-      const props = await getNextAdminProps({
-        params: params.nextadmin,
-        searchParams,
-        basePath: "/admin",
-        apiBasePath: "/api/admin",
-        prisma,
-        schema,
-      });
-
-      return <NextAdmin {...props} dashboard={Dashboard} />;
-    }
-    ```
-
-  </Tabs.Tab>
-  <Tabs.Tab>
-    The library does not provide an authentication system. If you want to add your own, you can do so by adding a role check to the `getServerSideProps` function:
-
-    > The following example uses [next-auth](https://next-auth.js.org/) to handle authentication
-
-    ```ts copy
-    export const config = {
-      api: {
-        bodyParser: false,
-      },
-    };
-
-    const { run } = createHandler({
-      prisma,
-      options,
-      apiBasePath: "/api/admin",
-      schema: schema,
-      onRequest: (req, res, next) => {
-        const session = await getServerSession(req, res, authOptions);
-        const isAdmin = session?.user?.role === "SUPERADMIN";
-
-        if (!isAdmin) {
-          return res.status(403).json({ error: 'Forbidden' })
-        }
-
-        return next()
-      }
-    });
-
-    export default run;
-    ```
-
-    ```ts copy filename="pages/api/admin/[[...nextadmin]].ts"
-    export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-      const session = await getServerSession(req, res, authOptions);
-      const isAdmin = session?.user?.role === "SUPERADMIN"; // your role check
-
-      if (!isAdmin) {
-        return {
-          redirect: {
-            destination: "/",
-            permanent: false,
-          },
-        };
-      }
-
-      return await getNextAdminProps({
-        basePath: "/pagerouter/admin",
-        apiBasePath: "/api/pagerouter/admin",
-        prisma,
-        schema,
-        options,
-        req,
-      });
-    };
-    ```
-
-  </Tabs.Tab>
-</Tabs>
+Some of the snippets are implemented in the example project. You can check them out in the [source code](https://github.com/sseuniverse/next-admin/tree/master/apps/example).
 
 ## Export data
 
-By using [exports](/docs/api/model-configuration#listexports-property) options, you can export data. Next Admin only implements the CSV export button, it's actually a link pointing to a provided url.
+By using [exports](/docs/api-docs#exports-property) options, you can export data. Next Admin only implements the CSV export button, it's actually a link pointing to a provided url.
 
 The API endpoint route must be defined in the `exports` property of the options object. This is an example of how to implement the export API endpoint:
 
-```typescript copy filename="app/api/admin/[[...nextadmin]]/route.ts"
+```typescript copy
+// app/api/users/export/route.ts
 import { prisma } from "@/prisma";
 
 export async function GET() {
@@ -153,7 +40,8 @@ export async function GET() {
 
 or with a stream response:
 
-```typescript copy filename="app/api/admin/[[...nextadmin]]/route.ts"
+```typescript copy
+// app/api/users/export/route.ts
 import { prisma } from "@/prisma";
 const BATCH_SIZE = 1000;
 
@@ -199,7 +87,7 @@ export async function GET() {
 
 > Note that you must secure the export route if you don't want to expose your data to the public by adding authentication middleware.
 
-There are two example files in the example project:
+There is two example files in the example project:
 
 - [app/api/users/export/route.ts](https://github.com/sseuniverse/next-admin/tree/master/apps/example/app/api/users/export/route.ts)
 - [app/api/posts/export/route.ts](https://github.com/sseuniverse/next-admin/tree/master/apps/example/app/api/posts/export/route.ts)
@@ -208,41 +96,25 @@ There are two example files in the example project:
 
 If you want to add data to the form data before submitting it, you can add logic to the `submitFormAction` function. This is an example of how to add `createdBy` and `updatedBy` fields based on the user id:
 
-```typescript copy filename="app/api/admin/[[...nextadmin]]/route.ts"
-import { options } from "@/options";
-import { prisma } from "@/prisma";
-import schema from "@/prisma/json-schema/json-schema.json";
-import { createHandler } from "@sse-ui/neadmin/dist/appHandler";
-import { NextRequest } from "next/server";
+```typescript copy
+// actions/nextadmin.ts
+"use server";
+import { ActionParams } from "@sse-ui/neadmin";
+import { submitForm } from "@sse-ui/neadmin/dist/actions";
 
-const { run } = createHandler({
-  apiBasePath: "/api/admin",
-  options,
-  prisma,
-  schema,
-});
-
-/**
- * context.params.nextadmin = ['{{model}}'] => CREATE
- * context.params.nextadmin = ['{{model}}', '{{id}}'] => UPDATE
- */
-export async function POST(req: NextRequest, context: any) {
-  const userId = 1;
-
-  if (context.params.nextadmin.length === 1) {
-    const formData = await req.formData();
-    formData.append("createdBy", userId.toString());
-    req.formData = async () => formData;
+export const submitFormAction = async (
+  params: ActionParams,
+  formData: FormData
+) => {
+  const userId = /* get the user id */;
+  if (params.params[1] === "new") {
+    formData.append("createdBy", userId);
   } else {
-    const formData = await req.formData();
-    formData.append("updatedBy", userId.toString());
-    req.formData = async () => formData;
+    formData.append("updatedBy", userId);
   }
 
-  return run(req, context);
-}
-
-export { run as DELETE, run as GET };
+  return submitForm({ ...params, options, prisma }, formData);
+};
 ```
 
 > Note that this example assumes that you have a `createdBy` and `updatedBy` field on each model, if you need to check the model name, you can use `params.params[0]`.
@@ -253,7 +125,8 @@ This snippet is not implemented in the example project.
 
 If you want to customize the input form, you can create a custom input component. This is an example of how to create a custom input component for the `birthDate` field:
 
-```typescript copy filename="app/components/inputs/BirthDateInput.tsx"
+```typescript copy
+// components/inputs/BirthDateInput.tsx
 "use client";
 import { CustomInputProps } from "@sse-ui/neadmin";
 import DateTimePicker from "react-datepicker";
@@ -300,7 +173,7 @@ The `CustomInputProps` type is provided by Next Admin.
 
 You can find an example of this component in the example project:
 
-- [app/components/inputs/DatePicker.tsx](https://github.com/sseuniverse/next-admin/tree/master/apps/example/components/DatePicker.tsx)
+- [app/components/inputs/DatePicker.tsx](https://github.com/sseuniverse/next-admin/blob/master/apps/example/components/DatePicker.tsx)
 
 # Explicit many-to-many
 
@@ -367,41 +240,3 @@ Note that you will need to use `relationOptionFormatter` instead of `optionForma
 With the `list` display, if the `orderField` property is defined, you will be able to apply drag and drop sorting on the categories. Upon form submission, the order will be updated accordingly, starting from 0.
 
 > The `orderField` property can also be applied for one-to-many relationships. In that case, drag and drop will also be available.
-
-# Custom pages
-
-You can create custom pages in the Next Admin UI. By reusing the `MainLayout` component, you can create a new page with the same layout as the Next Admin pages. This is an example of how to create a custom page:
-
-```typescript copy filename="app/custom/page.tsx"
-import { MainLayout } from "@sse-ui/neadmin";
-import { getMainLayoutProps } from "@sse-ui/neadmin/dist/appRouter";
-import { options } from "@/options";
-import { prisma } from "@/prisma";
-
-const CustomPage = async () => {
-  const mainLayoutProps = getMainLayoutProps({
-    basePath: "/admin",
-    apiBasePath: "/api/admin",
-    /*options*/
-  });
-
-  return <MainLayout {...mainLayoutProps}>{/*Page content*/}</MainLayout>;
-};
-
-export default CustomPage;
-```
-
-Then, if you want that route to be available on the sidebar, you can add a new route - [more info](/docs/api/options#pages):
-
-```typescript copy
-{
-  [...]
-  pages: {
-    "/custom": {
-      title: "Custom page",
-      icon: "PresentationChartBarIcon",
-    },
-  },
-  [...]
-}
-```

@@ -7,32 +7,32 @@ const Logo = ({ width }) => (
   >
     <style>
       {`.selection-effect {
-          stroke-dasharray: 10;
-          animation-duration: 40s;
-          animation-name: selectionEffect;
-          animation-timing-function: linear;
-          animation-direction: reverse;
-          animation-iteration-count: infinite;
-      }
-  
-      .selection-effect {
-        stroke: #000;
-      }
-  
-      .dark .selection-effect {
-          stroke: #fff;
-      }
-  
-      @keyframes selectionEffect {
-          from {
-              stroke-opacity: 1;
-          }
-  
-          to {
-              stroke-opacity: 1;
-              stroke-dashoffset: 800;
-          }
-      }`}
+        stroke-dasharray: 10;
+        animation-duration: 40s;
+        animation-name: selectionEffect;
+        animation-timing-function: linear;
+        animation-direction: reverse;
+        animation-iteration-count: infinite;
+    }
+
+    .selection-effect {
+      stroke: #000;
+    }
+
+    .dark .selection-effect {
+        stroke: #fff;
+    }
+
+    @keyframes selectionEffect {
+        from {
+            stroke-opacity: 1;
+        }
+
+        to {
+            stroke-opacity: 1;
+            stroke-dashoffset: 800;
+        }
+    }`}
     </style>
     <g clipPath="url(#clip0)">
       <rect width="101" height="69" />

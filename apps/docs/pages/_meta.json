@@ -12,8 +12,19 @@
     "type": "page",
     "display": "hidden"
   },
+  "v4": {
+    "title": "v4",
+    "type": "page",
+    "display": "hidden"
+  },
   "changelog": {
     "title": "Changelog",
     "type": "page"
+  },
+  "demo": {
+    "title": "Demo",
+    "type": "page",
+    "href": "https://sse-neadmin-demo.vercel.app",
+    "newWindow": true
   }
 }

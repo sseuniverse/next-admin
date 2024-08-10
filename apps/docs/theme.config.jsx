@@ -23,7 +23,7 @@ const config = {
             SSE World
           </a>
         }
-        .
+        . All Right Reserved.
       </span>
     ),
   },
@@ -38,7 +38,7 @@ const config = {
         content="next, prisma, admin, database, next.js, back-office, cms, sse"
       />
       <meta name="publisher" content="SSE World" />
-      {/* <link rel="canonical" href="https://next-admin.vercel.app" /> */}
+      <link rel="canonical" href="https://sse-neadmin-demo.vercel.app" />
       <link rel="icon" href="/logo.svg" />
     </>
   ),
