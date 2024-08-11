@@ -5,7 +5,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "integer"
         },
         "email": {
           "type": "string"
@@ -80,7 +80,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "integer"
         },
         "title": {
           "type": "string"
@@ -106,7 +106,7 @@
         },
         "rate": {
           "type": [
-            "string",
+            "number",
             "null"
           ]
         },
@@ -124,7 +124,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "integer"
         },
         "bio": {
           "type": [
@@ -157,7 +157,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "integer"
         },
         "name": {
           "type": "string"
@@ -185,7 +185,7 @@
       "type": "object",
       "properties": {
         "id": {
-          "type": "string"
+          "type": "integer"
         },
         "post": {
           "$ref": "#/definitions/Post"
@@ -201,20 +201,6 @@
       "required": [
         "postId",
         "categoryId"
-      ]
-    },
-    "Roles": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "name"
       ]
     }
   },
@@ -234,9 +220,6 @@
     },
     "categoriesOnPosts": {
       "$ref": "#/definitions/CategoriesOnPosts"
-    },
-    "roles": {
-      "$ref": "#/definitions/Roles"
     }
   }
 }

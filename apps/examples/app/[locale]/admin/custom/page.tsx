@@ -1,12 +1,13 @@
 import { MainLayout } from "@sse-ui/neadmin";
-import { getMainLayoutProps } from "@sse-ui/neadmin/dist/mainLayout";
+import { getMainLayoutProps } from "@sse-ui/neadmin/dist/appRouter";
 import { options } from "../../../../options";
 import { prisma } from "../../../../prisma";
 
 const CustomPage = async () => {
   const mainLayoutProps = getMainLayoutProps({
+    basePath: "/admin",
+    apiBasePath: "/api/admin",
     options,
-    isAppDir: true,
   });
 
   const totalUsers = await prisma.user.count();
@@ -26,7 +27,7 @@ const CustomPage = async () => {
         data: {
           name: "John Doe",
         },
-        logoutUrl: "/",
+        logout: ["/"],
       }}
     >
       <div className="p-10">
@@ -36,17 +37,7 @@ const CustomPage = async () => {
         <div className="mt-2">
           <div>
             <dl className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
-              {stats.map((stat) => (
-                <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow dark:bg-gray-800 sm:p-6" key={stat.name}>
-                  <dt className="truncate text-sm font-medium text-gray-500 dark:text-gray-400">
-                    {stat.name}
-                  </dt>
-                  <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-200">
-                    {stat.stat}
-                  </dd>
-                </div>
-              ))}
-              {/* <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow dark:bg-gray-800 sm:p-6">
+              <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow dark:bg-gray-800 sm:p-6">
                 <dt className="truncate text-sm font-medium text-gray-500 dark:text-gray-400">
                   Total Users
                 </dt>
@@ -69,7 +60,7 @@ const CustomPage = async () => {
                 <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-200">
                   1
                 </dd>
-              </div> */}
+              </div>
             </dl>
           </div>
         </div>

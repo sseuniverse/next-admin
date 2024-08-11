@@ -6,7 +6,7 @@ export async function GET(request: Request) {
 
   if (format === "csv") {
     const posts = await prisma.post.findMany();
-    const csv = posts.map((post: { id: any; title: any; published: any; authorId: any; rate: any; }) => {
+    const csv = posts.map((post) => {
       return `${post.id},${post.title},${post.published},${post.authorId},${post.rate}`;
     });
 

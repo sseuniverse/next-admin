@@ -1,9 +1,7 @@
 import { NextAdminOptions } from "@sse-ui/neadmin";
 import DatePicker from "./components/DatePicker";
-import { ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode } from "react";
 
 export const options: NextAdminOptions = {
-  basePath: "/pagerouter/admin",
   title: "⚡️ My Admin Page Router",
   model: {
     User: {
@@ -26,12 +24,12 @@ export const options: NextAdminOptions = {
         ],
         fields: {
           role: {
-            formatter: (role: { toString: () => string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => {
+            formatter: (role) => {
               return <strong>{role.toString()}</strong>;
             },
           },
           birthDate: {
-            formatter: (date: unknown, context: { locale: Intl.LocalesArgument; }) => {
+            formatter: (date, context) => {
               return new Date(date as unknown as string)
                 ?.toLocaleString(context?.locale)
                 .split(" ")[0];
@@ -78,8 +76,8 @@ export const options: NextAdminOptions = {
                * for example you can upload the file to an S3 bucket.
                * Make sure to return a string.
                */
-              upload: async (file, infos) => {
-                return "https://www.gravatar.com/avatar/00000000000000000000000000000000";
+              upload: async (buffer, infos) => {
+                return "https://raw.githubusercontent.com/premieroctet/next-admin/33fcd755a34f1ec5ad53ca8e293029528af814ca/apps/example/public/assets/logo.svg";
               },
             },
           },
@@ -88,15 +86,9 @@ export const options: NextAdminOptions = {
       actions: [
         {
           title: "Send email",
-          action: async (model, ids) => {
-            const response = await fetch("/api/email", {
-              method: "POST",
-              body: JSON.stringify(ids),
-            });
-
-            if (!response.ok) {
-              throw new Error("Failed to send email");
-            }
+          id: "submit-email",
+          action: async (ids) => {
+            console.log("Sending email to " + ids.length + " users");
           },
           successMessage: "Email sent successfully",
           errorMessage: "Error while sending email",
@@ -112,7 +104,7 @@ export const options: NextAdminOptions = {
         search: ["title"],
         fields: {
           author: {
-            formatter: (author: { name: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; }) => {
+            formatter: (author) => {
               return <strong>{author.name}</strong>;
             },
           },

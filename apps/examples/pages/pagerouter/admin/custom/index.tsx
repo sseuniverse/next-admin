@@ -1,9 +1,9 @@
 import { MainLayout, MainLayoutProps } from "@sse-ui/neadmin";
-import { getMainLayoutProps } from "@sse-ui/neadmin/dist/mainLayout";
+import { getMainLayoutProps } from "@sse-ui/neadmin/dist/pageRouter";
 import { GetServerSideProps } from "next";
 import { options } from "../../../../options";
 import { prisma } from "../../../../prisma";
-import "../../../../app/globals.css"
+import "../../../../app/globals.css";
 
 type Props = MainLayoutProps & {
   totalUsers: number;
@@ -35,7 +35,7 @@ const CustomPage = ({
         data: {
           name: "John Doe",
         },
-        logoutUrl: "/",
+        logout: ["/"],
       }}
     >
       <div className="p-10">
@@ -72,8 +72,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
   req,
 }) => {
   const mainLayoutProps = getMainLayoutProps({
+    basePath: "/pagerouter/admin",
+    apiBasePath: "/api/pagerouter/admin",
     options: pageOptions,
-    isAppDir: false,
   });
 
   if (req.method === "POST") {

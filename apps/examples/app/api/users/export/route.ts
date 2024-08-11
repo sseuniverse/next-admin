@@ -18,7 +18,7 @@ export async function GET() {
             take: batchSize,
           });
           const csv = users
-            .map((user: { id: any; name: any; email: any; role: any; birthDate: any; }) => {
+            .map((user) => {
               return `${user.id},${user.name},${user.email},${user.role},${user.birthDate}\n`;
             })
             .join("");
