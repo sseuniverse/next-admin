@@ -1,4 +1,4 @@
-# Next Admin
+# SSE Next Admin
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/npm/v/@sse-ui/neadmin/latest)](https://www.npmjs.com/package/@sse-ui/neadmin)
